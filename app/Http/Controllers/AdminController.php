@@ -6,16 +6,18 @@ use App\Models\Instructor;
 use App\Models\Vehicle;
 use App\Models\Review;
 use Illuminate\Http\Request;
+Use App\Models\Profile;
 
 class AdminController extends Controller
 {
     public function dashboard()
     {
+        $profile = Profile::first();
         $instructors = Instructor::orderBy('created_at')->get();
         $vehicles = Vehicle::orderBy('created_at')->get();
         $reviews = Review::orderBy('created_at', 'desc')->get();
 
-        return view('admin.dashboard', compact('instructors', 'vehicles', 'reviews'));
+        return view('admin.dashboard', compact('profile', 'instructors', 'vehicles', 'reviews'));
     }
 
     // --- INSTRUKTOŘI ---
@@ -155,5 +157,26 @@ class AdminController extends Controller
         $review->delete();
 
         return back()->with('status', 'Recenze byla smazána.');
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:60'],
+            'role' => ['required', 'string', 'max:60'],
+            'phone' => ['nullable', 'string', 'max:30'],
+            'bio' => ['nullable', 'string', 'max:300'],
+            'photo' => ['nullable', 'image', 'max:5120'],
+        ]);
+
+        $profile = Profile::first();
+
+        if ($request->hasFile('photo')) {
+            $validated['photo_path'] = $request->file('photo')->store('profile', 'public');
+        }
+
+        $profile->update($validated);
+
+        return back()->with('status', 'Sekce "O mně" byla upravena.');
     }
 }

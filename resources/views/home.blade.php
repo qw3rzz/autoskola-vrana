@@ -46,15 +46,23 @@
             <div class="instructor-col">
                 <h3 class="card-label">Něco o mně</h3>
                 <div class="instructor-card">
-                    <div class="instructor-photo">Foto instruktora</div>
-                    <h3>Mgr. Zbyněk Vrána</h3>
-                    <div class="role">Majitel &amp; hlavní instruktor</div>
-                    <p class="contact-line">📞 +420 737 330 001</p>
+                    @if ($profile && $profile->photo_path)
+                        <img class="instructor-photo" style="object-fit:cover;width:100%;" src="{{ asset('storage/' . $profile->photo_path) }}" alt="{{ $profile->name }}">
+                    @else
+                        <div class="instructor-photo">Foto instruktora</div>
+                    @endif
+                    <h3>{{ $profile->name ?? 'Mgr. Zbyněk Vrána' }}</h3>
+                    <div class="role">{{ $profile->role ?? 'Majitel & hlavní instruktor' }}</div>
+                    @if ($profile && $profile->phone)
+                        <p class="contact-line">📞 {{ $profile->phone }}</p>
+                    @endif
                     <p class="contact-line">Výcvik skupiny B</p>
-                    <div class="about-me">
-                        <h4>Zajímavosti o mně</h4>
-                        <p>„Není důležité, co všechno vím já, ale co z toho dokážu naučit vás. Zakládám si na stoprocentní trpělivosti, lidskosti a podpoře od první jízdy až po předání řidičáku.“</p>
-                    </div>
+                    @if ($profile && $profile->bio)
+                        <div class="about-me">
+                            <h4>Zajímavosti o mně</h4>
+                            <p>„{{ $profile->bio }}“</p>
+                        </div>
+                    @endif
                 </div>
             </div>
             <div class="about-copy">
@@ -65,9 +73,15 @@
                 <div class="fleet">
                     <h3>Naše vozy</h3>
                     <div class="fleet-grid">
-                        <div class="fleet-item">Vůz 1</div>
-                        <div class="fleet-item">Vůz 2</div>
-                        <div class="fleet-item">Vůz 3</div>
+                        @forelse ($vehicles as $vehicle)
+                            @if ($vehicle->photo_path)
+                                <img class="fleet-item" style="object-fit:cover;width:100%;" src="{{ asset('storage/' . $vehicle->photo_path) }}" alt="{{ $vehicle->name }}">
+                            @else
+                                <div class="fleet-item">{{ $vehicle->name }}</div>
+                            @endif
+                        @empty
+                            <div class="fleet-item">Zatím žádné vozy</div>
+                        @endforelse
                     </div>
                 </div>
             </div>
@@ -76,27 +90,27 @@
             <h3>Náš tým</h3>
             <p class="team-hint">Instruktoři autoškoly — nové kolegy sem lze kdykoliv přidat.</p>
             <div class="team-grid">
-                <div class="team-card">
-                    <div class="team-photo">Foto instruktora</div>
-                    <div class="team-info">
-                        <h4>Zbyněk Vrána</h4>
-                        <div class="team-role">Majitel &amp; hlavní instruktor</div>
+                @forelse ($instructors as $instructor)
+                    <div class="team-card">
+                        @if ($instructor->photo_path)
+                            <img class="team-photo" style="object-fit:cover;width:100%;" src="{{ asset('storage/' . $instructor->photo_path) }}" alt="{{ $instructor->name }}">
+                        @else
+                            <div class="team-photo">Foto instruktora</div>
+                        @endif
+                        <div class="team-info">
+                            <h4>{{ $instructor->name }}</h4>
+                            <div class="team-role">{{ $instructor->role }}</div>
+                        </div>
                     </div>
-                </div>
-                <div class="team-card placeholder">
-                    <div class="team-photo">+ Foto instruktora</div>
-                    <div class="team-info">
-                        <h4>Volné místo</h4>
-                        <div class="team-role">Instruktor</div>
+                @empty
+                    <div class="team-card placeholder">
+                        <div class="team-photo">+ Foto instruktora</div>
+                        <div class="team-info">
+                            <h4>Volné místo</h4>
+                            <div class="team-role">Instruktor</div>
+                        </div>
                     </div>
-                </div>
-                <div class="team-card placeholder">
-                    <div class="team-photo">+ Foto instruktora</div>
-                    <div class="team-info">
-                        <h4>Volné místo</h4>
-                        <div class="team-role">Instruktor</div>
-                    </div>
-                </div>
+                @endforelse
             </div>
         </div>
     </section>
@@ -216,23 +230,21 @@
                 <h2 class="section-title">Co říkají naši absolventi</h2>
             </div>
             <div class="reviews-grid">
-                <div class="review-card">
-                    <div class="stars">★★★★★</div>
-                    <p>„Ukázková recenze — sem přijde reálný text od absolventa, který schválím.“</p>
-                    <div class="who">Jméno, měsíc/rok</div>
-                </div>
-                <div class="review-card">
-                    <div class="stars">★★★★★</div>
-                    <p>„Recenze budou přidávány ručně, aby zůstal obsah pod kontrolou autoškoly.“</p>
-                    <div class="who">Jméno, měsíc/rok</div>
-                </div>
-                <div class="review-card">
-                    <div class="stars">★★★★★</div>
-                    <p>„V budoucí verzi s Laravelem půjde recenze spravovat přes jednoduchý admin.“</p>
-                    <div class="who">Jméno, měsíc/rok</div>
-                </div>
+                @forelse ($reviews as $review)
+                    <div class="review-card">
+                        <div class="stars">★★★★★</div>
+                        <p>„{{ $review->text }}“</p>
+                        <div class="who">{{ $review->author_name }}</div>
+                    </div>
+                @empty
+                    <div class="review-card">
+                        <div class="stars">★★★★★</div>
+                        <p>„Zatím tu nemáme žádné recenze — první brzy přibudou.“</p>
+                        <div class="who">Autoškola Vrána</div>
+                    </div>
+                @endforelse
             </div>
-            <p class="review-note">Recenze jsou zatím ukázkové — reálné texty doplním, publikaci mám vždy pod kontrolou.</p>
+            <p class="review-note">Recenze pečlivě vybírám a schvaluji, aby obsah zůstal pod kontrolou.</p>
         </div>
     </section>
 

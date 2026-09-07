@@ -61,6 +61,54 @@
             <div class="admin-status">{{ session('status') }}</div>
         @endif
 
+        {{-- ============ O MNĚ ============ --}}
+        <div class="admin-section">
+            <h2>O mně</h2>
+
+            <div class="admin-item">
+                @if ($profile && $profile->photo_path)
+                    <img src="{{ asset('storage/' . $profile->photo_path) }}" alt="{{ $profile->name }}">
+                @else
+                    <div class="no-photo">bez foto</div>
+                @endif
+                <div class="admin-item-body">
+                    <strong>{{ $profile->name ?? '—' }}</strong>
+                    <span>{{ $profile->role ?? '' }}</span>
+                    @if ($profile && $profile->bio)
+                        <p>{{ $profile->bio }}</p>
+                    @endif
+                </div>
+            </div>
+
+            <details class="add-toggle">
+                <summary>+ Upravit sekci "O mně"</summary>
+                <form class="admin-form" method="POST" action="{{ route('profile.settings.update') }}" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+
+                    <label for="prof-name">Jméno a titul</label>
+                    <input type="text" id="prof-name" name="name" maxlength="60" required value="{{ old('name', $profile->name ?? '') }}">
+
+                    <label for="prof-role">Role / pozice</label>
+                    <input type="text" id="prof-role" name="role" maxlength="60" required value="{{ old('role', $profile->role ?? '') }}">
+
+                    <label for="prof-phone">Telefon</label>
+                    <input type="text" id="prof-phone" name="phone" maxlength="30" value="{{ old('phone', $profile->phone ?? '') }}">
+
+                    <label for="prof-bio">Zajímavosti o mně (max. 300 znaků)</label>
+                    <textarea id="prof-bio" name="bio" maxlength="300" oninput="document.getElementById('prof-bio-count').textContent = this.value.length">{{ old('bio', $profile->bio ?? '') }}</textarea>
+                    <div class="char-count"><span id="prof-bio-count">{{ strlen($profile->bio ?? '') }}</span>/300</div>
+
+                    <label for="prof-photo">Fotka (jpg/png, max. 5 MB)</label>
+                    <input type="file" id="prof-photo" name="photo" accept="image/*">
+
+                    <div class="admin-form-submit">
+                        <button type="submit" class="btn-small">Uložit změny</button>
+                    </div>
+                </form>
+            </details>
+        </div>
+
         {{-- ============ INSTRUKTOŘI ============ --}}
         <div class="admin-section">
             <h2>Instruktoři</h2>
