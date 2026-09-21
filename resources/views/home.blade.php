@@ -229,22 +229,19 @@
                 <span class="eyebrow">Recenze</span>
                 <h2 class="section-title">Co říkají naši absolventi</h2>
             </div>
-            <div class="reviews-grid">
-                @forelse ($reviews as $review)
-                    <div class="review-card">
-                        <div class="stars">★★★★★</div>
-                        <p>„{{ $review->text }}“</p>
-                        <div class="who">{{ $review->author_name }}</div>
-                    </div>
-                @empty
+
+            @if ($reviews->isNotEmpty())
+                @include('partials.reviews-marquee', ['reviews' => $reviews])
+            @else
+                <div class="reviews-grid">
                     <div class="review-card">
                         <div class="stars">★★★★★</div>
                         <p>„Zatím tu nemáme žádné recenze — první brzy přibudou.“</p>
                         <div class="who">Autoškola Vrána</div>
                     </div>
-                @endforelse
-            </div>
-            <p class="review-note">Recenze pečlivě vybírám a schvaluji, aby obsah zůstal pod kontrolou.</p>
+                </div>
+            @endif
+
         </div>
     </section>
 

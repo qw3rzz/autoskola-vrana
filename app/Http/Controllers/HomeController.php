@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Instructor;
 use App\Models\Vehicle;
 use App\Models\Review;
-Use App\Models\Profile;
+use App\Models\Profile;
 
 class HomeController extends Controller
 {
