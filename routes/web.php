@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 
 Route::get('/', [HomeController::class, 'index']);
+Route::view('/zasady-ochrany-osobnich-udaju', 'gdpr')->name('gdpr');
 
 Route::middleware('auth')->group(function () {
 

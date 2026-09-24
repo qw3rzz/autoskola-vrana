@@ -55,6 +55,7 @@
         <div class="footer-bottom">
             <span>© 2026 Autoškola Vrána. Všechna práva vyhrazena.</span>
             <span>IČO: bude doplněno</span>
+            <a href="{{ route('gdpr') }}">Zásady ochrany osobních údajů</a>
         </div>
     </div>
 </footer>
