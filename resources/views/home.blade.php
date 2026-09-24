@@ -339,6 +339,7 @@
                     <input type="checkbox" id="consent" required style="width:16px;height:16px;flex:0 0 16px;padding:0;margin:3px 0 0 0;">                    Souhlasím se zpracováním osobních údajů za účelem vyřízení mého dotazu.
                 </label>
                 <button type="button" class="btn btn-red" style="border:none;cursor:pointer;">Odeslat dotaz</button>
+            </form>
         </div>
     </section>
 

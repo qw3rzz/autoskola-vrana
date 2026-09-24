@@ -15,9 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->web(append: [
             \Illuminate\Routing\Middleware\ThrottleRequests::class.':50,1',
         ]);
-    })
-    ->withMiddleware(function (Middleware $middleware): void {
-        //
+
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(
