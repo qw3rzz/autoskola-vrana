@@ -5,7 +5,7 @@ use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::view('/zasady-ochrany-osobnich-udaju', 'gdpr')->name('gdpr');
 
 Route::middleware('auth')->group(function () {

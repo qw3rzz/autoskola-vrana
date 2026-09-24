@@ -12,16 +12,16 @@
 
 <header>
     <div class="header-inner">
-        <a href="#home" class="logo">AUTOŠKO<span class="l-box">L</span>A VRÁNA</a>
+        <a href="{{ route('home') }}#home" class="logo">AUTOŠKO<span class="l-box">L</span>A VRÁNA</a>
         <nav class="main-nav">
-            <a href="#home">Home</a>
-            <a href="#o-nas">O nás</a>
-            <a href="#sluzby">Naše služby</a>
-            <a href="#cenik">Ceník</a>
-            <a href="#kontakt">Kontakty</a>
+            <a href="{{ route('home') }}#home">Home</a>
+            <a href="{{ route('home') }}#o-nas">O nás</a>
+            <a href="{{ route('home') }}#sluzby">Naše služby</a>
+            <a href="{{ route('home') }}#cenik">Ceník</a>
+            <a href="{{ route('home') }}#kontakt">Kontakty</a>
         </nav>
         <div class="header-cta">
-            <a href="#prihlaska" class="btn btn-red">Přihláška</a>
+            <a href="{{ route('home') }}#prihlaska" class="btn btn-red">Přihláška</a>
         </div>
     </div>
 </header>
@@ -38,11 +38,11 @@
             <div>
                 <h4>Navigace</h4>
                 <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#o-nas">O nás</a></li>
-                    <li><a href="#sluzby">Naše služby</a></li>
-                    <li><a href="#cenik">Ceník</a></li>
-                    <li><a href="#kontakt">Kontakty</a></li>
+                    <li><a href="{{ route('home') }}#home">Home</a></li>
+                    <li><a href="{{ route('home') }}#o-nas">O nás</a></li>
+                    <li><a href="{{ route('home') }}#sluzby">Naše služby</a></li>
+                    <li><a href="{{ route('home') }}#cenik">Ceník</a></li>
+                    <li><a href="{{ route('home') }}#kontakt">Kontakty</a></li>
                 </ul>
             </div>
             <div>
