@@ -242,7 +242,45 @@
                 </div>
             @endif
 
+            <div class="rv-form-wrap">
+                @if (session('review_success'))
+                    <p class="rv-form-success">{{ session('review_success') }}</p>
+                @endif
+
+                <button type="button" class="rv-all-btn" onclick="rvOpenForm()">Napsat recenzi</button>
+
+                <div class="rv-modal" id="rvFormModal" onclick="if(event.target === this) rvCloseForm()">
+                    <div class="rv-modal-box" role="dialog" aria-modal="true" aria-label="Napsat recenzi">
+                        <button type="button" class="rv-modal-close" onclick="rvCloseForm()" aria-label="Zavřít">✕</button>
+
+                        <h3>Napsat recenzi</h3>
+
+                        <form method="POST" action="{{ route('reviews.public.store') }}">
+                            @csrf
+
+                            {{-- Honeypot – necháváme skryté, boti ho vyplní --}}
+                            <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute; left:-9999px;">
+
+                            <label for="author_name">Jméno</label>
+                            <input type="text" id="author_name" name="author_name" value="{{ old('author_name') }}" required maxlength="100">
+                            @error('author_name')
+                            <span class="rv-form-error">{{ $message }}</span>
+                            @enderror
+
+                            <label for="text">Vaše recenze</label>
+                            <textarea id="text" name="text" rows="4" required maxlength="1000">{{ old('text') }}</textarea>
+                            @error('text')
+                            <span class="rv-form-error">{{ $message }}</span>
+                            @enderror
+
+                            <button type="submit" class="rv-all-btn">Odeslat</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
         </div>
+    </section>
     </section>
 
     <section id="faq">
@@ -316,7 +354,7 @@
                 <h2 class="section-title">Ozvěte se</h2>
                 <div class="item">
                     <div class="label">Telefon</div>
-                    <div class="value">+420 737 330 001</div>
+                    <div class="value"><a href="tel:+420737330001">+420 737 330 001</a></div>
                 </div>
                 <div class="item">
                     <div class="label">E-mail</div>
@@ -324,9 +362,19 @@
                 </div>
                 <div class="item">
                     <div class="label">Adresa</div>
-                    <div class="value">Holešov a okolí — přesná adresa učebny bude doplněna</div>
+                    <div class="value">
+                        <a href="https://mapy.com/s/gokukozute" target="_blank" rel="noopener">Tovární 1333, 769 01 Holešov</a><br>
+                        IČO: 30146178<br>
+                        Datová schránka: 9s42n4w
+                    </div>
                 </div>
-                <div class="map-box">Google mapa</div>
+                <div class="map-box">
+                    <iframe
+                        src="https://www.google.com/maps?q=Tov%C3%A1rn%C3%AD+1333,+769+01+Hole%C5%A1ov&output=embed"
+                        title="Mapa: Autoškola Vrána, Tovární 1333, Holešov"
+                        loading="lazy" allowfullscreen
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
             </div>
             <form class="contact-form">
                 <label for="jmeno">Jméno a příjmení</label>

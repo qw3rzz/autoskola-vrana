@@ -4,9 +4,20 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\ApplicationController;
+
+Route::get('/prihlaska', [ApplicationController::class, 'create'])->name('application.create');
+Route::post('/prihlaska', [ApplicationController::class, 'store'])
+    ->middleware('throttle:5,1')
+    ->name('application.store');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::view('/zasady-ochrany-osobnich-udaju', 'gdpr')->name('gdpr');
+
+Route::post('/recenze', [ReviewController::class, 'store'])
+    ->name('reviews.public.store')
+    ->middleware('throttle:10,1'); // max 5 pokusů za minutu, ochrana proti spamu
 
 Route::middleware('auth')->group(function () {
 

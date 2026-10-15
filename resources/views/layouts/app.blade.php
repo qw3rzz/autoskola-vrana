@@ -43,18 +43,26 @@
                     <li><a href="{{ route('home') }}#sluzby">Naše služby</a></li>
                     <li><a href="{{ route('home') }}#cenik">Ceník</a></li>
                     <li><a href="{{ route('home') }}#kontakt">Kontakty</a></li>
+                    <li><a href="{{ route('application.create') }}">Přihláška</a></li>
                 </ul>
             </div>
             <div>
                 <h4>Kontakt</h4>
+                <address class="footer-address">
+                    Autoškola Vrána<br>
+                    <a href="https://mapy.com/s/gokukozute" target="_blank" rel="noopener">
+                        Tovární 1333, 769 01 Holešov
+                    </a><br>
+                    IČO: 30146178<br>
+                    Datová schránka: 9s42n4w
+                </address>
                 <p>+420 737 330 001</p>
                 <p>E-mail bude doplněn</p>
-                <p>Holešov a okolí</p>
             </div>
         </div>
+
         <div class="footer-bottom">
             <span>© 2026 Autoškola Vrána. Všechna práva vyhrazena.</span>
-            <span>IČO: bude doplněno</span>
             <a href="{{ route('gdpr') }}">Zásady ochrany osobních údajů</a>
         </div>
     </div>

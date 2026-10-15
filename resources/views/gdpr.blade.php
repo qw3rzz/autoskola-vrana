@@ -8,8 +8,9 @@
         <p><em>Účinné od: {{ now()->format('d.m.Y') }}</em></p>
 
         <h2>1. Správce osobních údajů</h2>
-        <p>Mgr. Zbyněk Vrána, Autoškola Vrána, IČO: [doplnit], se sídlem [doplnit adresu],
-            kontaktní e-mail: [doplnit], telefon: +420 737 330 001 ("správce").</p>
+        <p>Mgr. Zbyněk Vrána, Autoškola Vrána, IČO: 30146178, se sídlem Tovární 1333, 769 01 Holešov,
+            datová schránka: 9s42n4w, telefon: +420 737 330 001 ("správce").
+            Kontaktní e-mail: [doplnit po zřízení domény].</p>
 
         <h2>2. Jaké údaje zpracováváme</h2>
         <p>Prostřednictvím kontaktního formuláře a přihlášky do kurzu zpracováváme: jméno a příjmení,
