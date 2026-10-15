@@ -260,11 +260,28 @@ h2.section-title{
     background:var(--ink);color:var(--white);padding:28px;border-radius:var(--radius);
 }
 .review-card .stars{color:var(--red);font-size:16px;margin-bottom:14px;letter-spacing:2px;}
+
 .review-card p{font-size:15.5px;color:#e2e2e2;margin:0 0 18px;font-style:italic;}
+
 .review-card .who{font-size:14px;color:#999;text-transform:uppercase;letter-spacing:0.5px;}
+
 .review-note{
     margin-top:24px;font-size:14px;color:#888;
 }
+
+.reviews-head{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    gap:16px;flex-wrap:wrap;margin-bottom:48px;
+}
+.reviews-head .section-head{margin:0;}
+.reviews-link{
+    background:none;border:none;cursor:pointer;
+    padding:0 0 6px;border-bottom:2px solid transparent;
+    font-family:'Barlow Condensed';font-size:18px;font-weight:600;
+    text-transform:uppercase;letter-spacing:0.5px;color:var(--red);
+}
+
+.reviews-link:hover{color:var(--red-dark);border-bottom-color:var(--red-dark);}
 
 /* FAQ */
 .faq-item{border-bottom:1px solid var(--line);}

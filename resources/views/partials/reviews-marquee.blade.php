@@ -21,10 +21,6 @@
     </div>
 </div>
 
-<div class="rv-all-wrap">
-    <button type="button" class="rv-all-btn" onclick="rvOpenModal()">Zobrazit všechny recenze</button>
-</div>
-
 {{-- Modal na postupné procházení recenzí --}}
 <div class="rv-modal" id="rvModal" onclick="if(event.target === this) rvCloseModal()">
     <div class="rv-modal-box" role="dialog" aria-modal="true" aria-label="Recenze">

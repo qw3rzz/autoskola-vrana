@@ -225,9 +225,16 @@
 
     <section id="recenze" class="alt">
         <div class="wrap">
-            <div class="section-head">
-                <span class="eyebrow">Recenze</span>
-                <h2 class="section-title">Co říkají naši absolventi</h2>
+            <div class="reviews-head">
+                <div class="section-head">
+                    <span class="eyebrow">Recenze</span>
+                    <h2 class="section-title">Co říkají naši absolventi</h2>
+                </div>
+                @if ($reviews->isNotEmpty())
+                    <button type="button" class="reviews-link" onclick="rvOpenModal()">
+                        Zobrazit všechny recenze →
+                    </button>
+                @endif
             </div>
 
             @if ($reviews->isNotEmpty())
@@ -280,7 +287,6 @@
             </div>
 
         </div>
-    </section>
     </section>
 
     <section id="faq">
