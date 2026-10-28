@@ -42,8 +42,7 @@
                     <li><a href="{{ route('home') }}#sluzby">Naše služby</a></li>
                     <li><a href="{{ route('home') }}#cenik">Ceník</a></li>
                     <li><a href="{{ route('home') }}#kontakt">Kontakty</a></li>
-                    <li><a href="{{ route('application.create') }}">Přihláška</a></li>
-                </ul>
+                    <a href="{{ route('prihlaska') }}" class="btn btn-red">Přihláška</a>                </ul>
             </div>
             <div>
                 <h4>Kontakt</h4>
