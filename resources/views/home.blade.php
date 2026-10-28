@@ -13,10 +13,9 @@
                 <h1 class="hero-title">S Vránou pod <span>křídly</span> zvládnete každou zatáčku</h1>
                 <p class="hero-sub">Osobní a klidný přístup, moderní auta a instruktor, se kterým hodíte strach z řízení za hlavu.</p>
                 <div class="hero-ctas">
-                    <a href="#prihlaska" id="prihlaska" class="btn btn-red">Chci se přihlásit</a>
-                    <a href="#o-nas" class="btn btn-ghost" style="border-color:#fff;color:#fff;">Více o autoškole</a>
+                    <a href="{{ route('prihlaska') }}" class="btn btn-red">Chci se přihlásit</a>                    <a href="#o-nas" class="btn btn-ghost" style="border-color:#fff;color:#fff;">Více o autoškole</a>
                 </div>
-                <a href="#zdravotni" class="health-link">⬇ Lékařský posudek (PDF)</a>
+                <a href="{{ asset('docs/posudek-o-zdravotni-zpusobilosti.pdf') }}" class="health-link" download>⬇ Lékařský posudek (PDF)</a>
             </div>
         </div>
     </section>
@@ -314,8 +313,7 @@
                 </div>
                 <div class="faq-item">
                     <button class="faq-q">Co všechno potřebuji k přihlášení do autoškoly?<span class="plus">+</span></button>
-                    <div class="faq-a"><p>Vyplněnou Žádost o řidičské oprávnění a Posudek o zdravotní způsobilosti potvrzený vaším praktickým lékařem. Oba formuláře půjde stáhnout přímo v úvodu webu — jakmile je budete mít, stačí mě kontaktovat.</p></div>
-                </div>
+                    <div class="faq-a"><p>Vyplněnou online přihlášku a Posudek o zdravotní způsobilosti potvrzený vaším praktickým lékařem. Přihlášku vyplníte na stránce <a href="{{ route('prihlaska') }}" style="color:var(--red);text-decoration:underline;">Přihláška</a>, posudek si můžete <a href="{{ asset('docs/posudek-o-zdravotni-zpusobilosti.pdf') }}" style="color:var(--red);text-decoration:underline;" download>stáhnout zde (PDF)</a>.</p></div>                </div>
                 <div class="faq-item">
                     <button class="faq-q">Jak probíhá teoretická výuka?<span class="plus">+</span></button>
                     <div class="faq-a"><p>Přímo v naší učebně autoškoly v Holešově — žádné nudné samostudium doma. Pravidla, křižovatky i krizové situace z reálného provozu si společně srozumitelně projdeme.</p></div>
@@ -340,19 +338,6 @@
         </div>
     </section>
 
-    <section id="prihlaska-zdravotni" class="alt">
-        <div class="wrap">
-            <div class="section-head">
-                <span class="eyebrow">Přihláška</span>
-                <h2 class="section-title">Přihláška do autoškoly</h2>
-                <p>Formulář přihlášky sem doplním, jakmile pod IČO dokoupím licenci v aplikaci MOJE Autoškola. Pod ním bude i odkaz na Posudek o zdravotní způsobilosti ke stažení.</p>
-            </div>
-            <div id="zdravotni" style="border:2px dashed var(--line);padding:40px;text-align:center;color:#999;border-radius:var(--radius);">
-                Zde bude vložen formulář přihlášky + zdravotní posudek
-            </div>
-        </div>
-    </section>
-
     <section id="kontakt">
         <div class="wrap contact-grid">
             <div class="contact-info">
@@ -364,7 +349,7 @@
                 </div>
                 <div class="item">
                     <div class="label">E-mail</div>
-                    <div class="value">bude doplněno po zřízení domény</div>
+                    <div class="value"><a href="mailto:info@autoskolavrana.cz">info@autoskolavrana.cz</a></div>
                 </div>
                 <div class="item">
                     <div class="label">Adresa</div>
@@ -390,7 +375,8 @@
                 <label for="zprava">Zpráva</label>
                 <textarea id="zprava" placeholder="Váš dotaz..."></textarea>
                 <label class="consent" style="display:flex;align-items:flex-start;gap:8px;font-size:0.85em;">
-                    <input type="checkbox" id="consent" required style="width:16px;height:16px;flex:0 0 16px;padding:0;margin:3px 0 0 0;">                    Souhlasím se zpracováním osobních údajů za účelem vyřízení mého dotazu.
+                    <input type="checkbox" id="consent" required style="width:16px;height:16px;flex:0 0 16px;padding:0;margin:3px 0 0 0;">
+                    <span>Souhlasím se zpracováním osobních údajů za účelem vyřízení mého dotazu. <a href="{{ route('gdpr') }}" target="_blank" style="text-decoration:underline;">Zásady ochrany osobních údajů</a></span>
                 </label>
                 <button type="button" class="btn btn-red" style="border:none;cursor:pointer;">Odeslat dotaz</button>
             </form>

@@ -21,8 +21,7 @@
             <a href="{{ route('home') }}#kontakt">Kontakty</a>
         </nav>
         <div class="header-cta">
-            <a href="{{ route('home') }}#prihlaska" class="btn btn-red">Přihláška</a>
-        </div>
+            <a href="{{ route('prihlaska') }}" class="btn btn-red">Přihláška</a>        </div>
     </div>
 </header>
 

@@ -14,6 +14,7 @@ Route::post('/prihlaska', [ApplicationController::class, 'store'])
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::view('/zasady-ochrany-osobnich-udaju', 'gdpr')->name('gdpr');
+Route::view('/prihlaska', 'prihlaska')->name('prihlaska');
 
 Route::post('/recenze', [ReviewController::class, 'store'])
     ->name('reviews.public.store')
