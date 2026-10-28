@@ -367,18 +367,35 @@
                         referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
-            <form class="contact-form">
+            <form class="contact-form" method="POST" action="{{ route('contact.send') }}">
+                @csrf
+
+                @if (session('contact_success'))
+                    <p class="rv-form-success">{{ session('contact_success') }}</p>
+                @endif
+
+                {{-- Honeypot --}}
+                <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;">
+
                 <label for="jmeno">Jméno a příjmení</label>
-                <input id="jmeno" type="text" placeholder="Jan Novák">
+                <input id="jmeno" name="name" type="text" placeholder="Jan Novák" value="{{ old('name') }}" required maxlength="100">
+                @error('name') <span class="rv-form-error">{{ $message }}</span> @enderror
+
                 <label for="mail">E-mail</label>
-                <input id="mail" type="email" placeholder="jan@email.cz">
+                <input id="mail" name="email" type="email" placeholder="jan@email.cz" value="{{ old('email') }}" required maxlength="150">
+                @error('email') <span class="rv-form-error">{{ $message }}</span> @enderror
+
                 <label for="zprava">Zpráva</label>
-                <textarea id="zprava" placeholder="Váš dotaz..."></textarea>
+                <textarea id="zprava" name="message" placeholder="Váš dotaz..." required maxlength="2000">{{ old('message') }}</textarea>
+                @error('message') <span class="rv-form-error">{{ $message }}</span> @enderror
+
                 <label class="consent" style="display:flex;align-items:flex-start;gap:8px;font-size:0.85em;">
-                    <input type="checkbox" id="consent" required style="width:16px;height:16px;flex:0 0 16px;padding:0;margin:3px 0 0 0;">
+                    <input type="checkbox" id="consent" name="consent" value="1" required style="width:16px;height:16px;flex:0 0 16px;padding:0;margin:3px 0 0 0;">
                     <span>Souhlasím se zpracováním osobních údajů za účelem vyřízení mého dotazu. <a href="{{ route('gdpr') }}" target="_blank" style="text-decoration:underline;">Zásady ochrany osobních údajů</a></span>
                 </label>
-                <button type="button" class="btn btn-red" style="border:none;cursor:pointer;">Odeslat dotaz</button>
+                @error('consent') <span class="rv-form-error">{{ $message }}</span> @enderror
+
+                <button type="submit" class="btn btn-red" style="border:none;cursor:pointer;">Odeslat dotaz</button>
             </form>
         </div>
     </section>

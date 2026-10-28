@@ -6,6 +6,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\ContactController;
+
+Route::post('/kontakt', [ContactController::class, 'send'])
+    ->middleware('throttle:5,10')
+    ->name('contact.send');
 
 Route::get('/prihlaska', [ApplicationController::class, 'create'])->name('application.create');
 Route::post('/prihlaska', [ApplicationController::class, 'store'])

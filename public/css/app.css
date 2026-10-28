@@ -345,4 +345,6 @@ footer a:hover{color:var(--red);}
     .footer-grid{grid-template-columns:1fr;}
 }
 
+#faq{padding-bottom:40px;}
+
 
