@@ -25,6 +25,18 @@
     </div>
 </header>
 
+@if (session('contact_success'))
+    <div class="toast" id="toast" role="status">
+        Děkujeme za dotaz, odpovíme co nejdříve.
+    </div>
+    <script>
+        setTimeout(function () {
+            var t = document.getElementById('toast');
+            if (t) t.classList.add('hide');
+        }, 5000);
+    </script>
+@endif
+
 @yield('content')
 
 <footer>
@@ -55,7 +67,7 @@
                     Datová schránka: 9s42n4w
                 </address>
                 <p>+420 737 330 001</p>
-                <p>E-mail bude doplněn</p>
+                <p>info@autoskolavrana.cz</p>
             </div>
         </div>
 

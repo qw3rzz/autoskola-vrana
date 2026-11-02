@@ -359,20 +359,28 @@
                         Datová schránka: 9s42n4w
                     </div>
                 </div>
-                <div class="map-box">
-                    <iframe
-                        src="https://www.google.com/maps?q=Tov%C3%A1rn%C3%AD+1333,+769+01+Hole%C5%A1ov&output=embed"
-                        title="Mapa: Autoškola Vrána, Tovární 1333, Holešov"
-                        loading="lazy" allowfullscreen
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <div class="map-box" id="map-box">
+                    <div class="map-consent">
+                        <p>Mapa se načítá ze služeb Google, které mohou ukládat cookies. Kliknutím na tlačítko s tím souhlasíte.</p>
+                        <button type="button" class="btn btn-red" id="map-load" style="border:none;cursor:pointer;">Zobrazit mapu</button>
+                        <a href="https://mapy.com/s/gokukozute" target="_blank" rel="noopener" style="text-decoration:underline;font-size:.9rem;">Otevřít na Mapy.com</a>
+                    </div>
                 </div>
+                <script>
+                    document.getElementById('map-load').addEventListener('click', function () {
+                        var box = document.getElementById('map-box');
+                        var f = document.createElement('iframe');
+                        f.src = 'https://www.google.com/maps?q=Tov%C3%A1rn%C3%AD+1333,+769+01+Hole%C5%A1ov&output=embed';
+                        f.title = 'Mapa: Autoškola Vrána, Tovární 1333, Holešov';
+                        f.allowFullscreen = true;
+                        f.referrerPolicy = 'no-referrer-when-downgrade';
+                        box.innerHTML = '';
+                        box.appendChild(f);
+                    });
+                </script>
             </div>
             <form class="contact-form" method="POST" action="{{ route('contact.send') }}">
                 @csrf
-
-                @if (session('contact_success'))
-                    <p class="rv-form-success">{{ session('contact_success') }}</p>
-                @endif
 
                 {{-- Honeypot --}}
                 <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;">

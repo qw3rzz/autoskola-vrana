@@ -25,6 +25,5 @@ class ContactController extends Controller
         Mail::to('info@autoskolavrana.cz')->send(new ContactMessage($data));
 
         return redirect(route('home') . '#kontakt')
-            ->with('contact_success', 'Děkuji, zpráva byla odeslána. Ozvu se vám co nejdřív.');
-    }
+            ->with('contact_success', true);    }
 }
