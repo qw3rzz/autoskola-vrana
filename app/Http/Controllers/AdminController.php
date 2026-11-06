@@ -169,8 +169,10 @@ class AdminController extends Controller
             'photo' => ['nullable', 'image', 'max:5120'],
         ]);
 
-        $profile = Profile::first();
-
+        $profile = Profile::firstOrCreate([], [
+            'name' => $validated['name'],
+            'role' => $validated['role'],
+        ]);
         if ($request->hasFile('photo')) {
             $validated['photo_path'] = $request->file('photo')->store('profile', 'public');
         }

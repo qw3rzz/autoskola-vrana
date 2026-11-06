@@ -368,8 +368,8 @@
                 </div>
                 <script>
                     document.getElementById('map-load').addEventListener('click', function () {
-                        var box = document.getElementById('map-box');
-                        var f = document.createElement('iframe');
+                        const box = document.getElementById('map-box');
+                        const f = document.createElement('iframe');
                         f.src = 'https://www.google.com/maps?q=Tov%C3%A1rn%C3%AD+1333,+769+01+Hole%C5%A1ov&output=embed';
                         f.title = 'Mapa: Autoškola Vrána, Tovární 1333, Holešov';
                         f.allowFullscreen = true;
