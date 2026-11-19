@@ -2,25 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Admin\ReviewRequest;
 use App\Models\Review;
-use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 
 class ReviewController extends Controller
 {
-    public function store(Request $request)
+    public function store(ReviewRequest $request): RedirectResponse
     {
-        $validated = $request->validate([
-            'author_name' => ['required', 'string', 'max:100'],
-            'text' => ['required', 'string', 'max:1000'],
-            'website' => ['max:0'], // honeypot – skryté pole, boti ho vyplní
-        ]);
+        Review::create($request->data());
 
-        Review::create([
-            'author_name' => $validated['author_name'],
-            'text' => $validated['text'],
-            'is_published' => false, // vždy false, schvaluje admin
-        ]);
+        return back()->with('status', 'Recenze byla přidána.');
+    }
 
-        return back()->with('review_success', 'Díky za recenzi!');
+    public function update(ReviewRequest $request, Review $review): RedirectResponse
+    {
+        $review->update($request->data());
+
+        return back()->with('status', 'Recenze byla upravena.');
+    }
+
+    public function destroy(Review $review): RedirectResponse
+    {
+        $review->delete();
+
+        return back()->with('status', 'Recenze byla smazána.');
     }
 }

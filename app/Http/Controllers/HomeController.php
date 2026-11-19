@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Instructor;
-use App\Models\Vehicle;
-use App\Models\Review;
 use App\Models\Profile;
+use App\Models\Review;
+use App\Models\Vehicle;
 
 class HomeController extends Controller
 {
